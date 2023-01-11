@@ -9,8 +9,8 @@ const Home = () => {
       <div className='flex justify-evenly gap-10  items-center'>
 
         <section className='backdrop-blur-lg section-style rounded-2xl h-[82vh] mx-12'>
-          <div class="max-w-screen-xl px-4 py-10 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-3  gap-y-8 items-center lg:gap-x-16">
+          <div className="max-w-screen-xl px-4 py-10 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-3  gap-y-8 items-center lg:gap-x-16">
               <div className='col-span-1'>
                 <Form></Form>
               </div>
