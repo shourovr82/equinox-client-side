@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import './form.css'
 
-const Form = () => {
+const Form = ({ setLoadPosts }) => {
   const [mainpost, setMainPost] = useState('');
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
 
@@ -13,8 +13,6 @@ const Form = () => {
   }
 
   const handleSubmitPost = data => {
-
-    console.log(errors.message)
     console.log(data)
     if (data) {
       fetch('http://localhost:9999/poststatus', {
@@ -27,6 +25,7 @@ const Form = () => {
         .then(res => res.json())
         .then(result => {
           console.log(result);
+          setLoadPosts(true);
           reset();
           toast.success('Successfully Posted.', {
             style: {
@@ -48,10 +47,10 @@ const Form = () => {
 
   return (
     <form
-      onSubmit={handleSubmit(handleSubmitPost)} className={` ${!errors ? 'gap-0' : 'gap-3'} grid grid-cols-6 `}>
+      onSubmit={handleSubmit(handleSubmitPost)} className={` ${!errors ? 'gap-0' : 'gap-3'} grid grid-cols-6`}>
 
 
-      <div className="col-span-6 ">
+      <div className="col-span-6  ">
         <label className="pure-material-textfield-outlined  w-full">
           <input placeholder=' '   {...register("fullname", {
             required: 'Your Name is Required ', minLength: { value: 3, message: 'Your name must be at least 3' }
@@ -88,7 +87,7 @@ const Form = () => {
       <div className="col-span-6 ">
         <label className="pure-material-textfield-outlined w-full">
           <textarea onChange={(e) => handleChangeText(e)} defaultValue={mainpost} name="alltext" rows='5' style={{ overflow: 'hidden' }} cols="50" placeholder=' '{...register("posttext", {
-            required: 'Full Post is Required and min length is 10 ',
+            required: 'Full Post is Required  ',
             minLength: { value: 10, message: 'Post  must be at  least 10  Characters' }
 
           })} ></textarea>
@@ -98,7 +97,7 @@ const Form = () => {
         </label>
       </div>
       <div className="col-span-6 ">
-        <button type='submit' className="button-90" >Post Blog</button>
+        <button type='submit' className={`button-90  `} >Post Blog</button>
       </div>
 
 

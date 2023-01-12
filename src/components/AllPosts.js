@@ -11,37 +11,53 @@ import { Grid, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import SinglePost from './SinglePost';
 
 
 
 
-const AllPosts = () => {
+const AllPosts = ({ loadPosts, setLoadPosts }) => {
+
+  const { status, data: allposts, error, refetch } = useQuery({
+    queryKey: ['todos'],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:9999/getallposts')
+      return res.data
+    },
+  })
+
+  if (loadPosts) {
+    refetch();
+    setLoadPosts(false);
+  }
+
+
 
   return (
-    <div className=' rounded-2xl overflow-hidden  h-[70vh]'>
-
+    <div className=' rounded-2xl   w-full   h-[70vh]'>
+      {!allposts?.length &&
+        <h1 className='text-center text-white text-2xl'>No Posts Added !! , Please add Some Post</h1>
+      }
       <>
         <Swiper
           slidesPerView={3}
           grid={{
             rows: 2,
           }}
-          spaceBetween={30}
+          spaceBetween={10}
           pagination={{
             clickable: true,
           }}
           modules={[Grid, Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide className='rounded-2xl'>Slide 1</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 2</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 3</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 4</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 5</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 6</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 7</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 8</SwiperSlide>
-          <SwiperSlide className='rounded-2xl'>Slide 9</SwiperSlide>
+
+          {
+            allposts?.map((post) => <SwiperSlide className='rounded-2xl shadow-sm shadow-[#ffffff44] bg-[#ffffff21] relative  transition hover:shadow-sm' key={post?._id}><SinglePost setLoadPosts={setLoadPosts} post={post}></SinglePost></SwiperSlide >)
+          }
+
         </Swiper>
       </>
     </div>
