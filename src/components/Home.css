@@ -12,7 +12,37 @@
 
 }
 
+.home-bg-mobile {
+  background-image: url(../assets/moon-ga8c4ae976_1280.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 95vh;
+  border-radius: 15px;
+  filter: brightness(0.8);
+
+  /* filter: blur(2px); */
+
+}
+
+@media only screen and (max-width: 600px) {
+  .home-bg-mobile {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.8)), url(../assets/moon-ga8c4ae976_1280.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 95vh;
+    border-radius: 15px;
+
+
+  }
+}
+
 
 .section-style {
+  z-index: 1000;
   box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.342);
 }

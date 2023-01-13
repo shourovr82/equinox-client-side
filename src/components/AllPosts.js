@@ -36,7 +36,7 @@ const AllPosts = ({ loadPosts, setLoadPosts }) => {
 
 
   return (
-    <div className=' rounded-2xl   w-full   h-[70vh]'>
+    <div className=' rounded-2xl   w-full h-[35vh]   md:h-[75vh]'>
       {!allposts?.length &&
         <h1 className='text-center text-white text-2xl'>No Posts Added !! , Please add Some Post</h1>
       }
@@ -47,11 +47,23 @@ const AllPosts = ({ loadPosts, setLoadPosts }) => {
             rows: 2,
           }}
           spaceBetween={10}
-          pagination={{
-            clickable: true,
-          }}
           modules={[Grid, Pagination]}
-          className="mySwiper"
+          className="mySwiper rounded-2xl hidden md:block"
+        >
+
+          {
+            allposts?.map((post) => <SwiperSlide className='cursor-pointer rounded-2xl shadow-sm shadow-[#ffffff44] bg-[#ffffff21] relative  transition hover:shadow-sm' key={post?._id}><SinglePost setLoadPosts={setLoadPosts} post={post}></SinglePost></SwiperSlide >)
+          }
+
+        </Swiper>
+        <Swiper
+          slidesPerView={2}
+          grid={{
+            rows: 2,
+          }}
+          spaceBetween={10}
+          modules={[Grid, Pagination]}
+          className="mySwiper rounded-2xl md:hidden block"
         >
 
           {
@@ -59,6 +71,7 @@ const AllPosts = ({ loadPosts, setLoadPosts }) => {
           }
 
         </Swiper>
+
       </>
     </div>
   );

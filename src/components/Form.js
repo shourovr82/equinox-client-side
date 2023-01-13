@@ -47,7 +47,7 @@ const Form = ({ setLoadPosts }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(handleSubmitPost)} className={` ${!errors ? 'gap-0' : 'gap-3'} grid grid-cols-6`}>
+      onSubmit={handleSubmit(handleSubmitPost)} className={` ${!errors ? 'gap-0' : 'gap-0 md:gap-3 '} grid grid-cols-6`}>
 
 
       <div className="col-span-6  ">
@@ -86,7 +86,7 @@ const Form = ({ setLoadPosts }) => {
 
       <div className="col-span-6 ">
         <label className="pure-material-textfield-outlined w-full">
-          <textarea onChange={(e) => handleChangeText(e)} defaultValue={mainpost} name="alltext" rows='5' style={{ overflow: 'hidden' }} cols="50" placeholder=' '{...register("posttext", {
+          <textarea onChange={(e) => handleChangeText(e)} defaultValue={mainpost} name="alltext" rows='4' style={{ overflow: 'hidden' }} cols="50" placeholder=' '{...register("posttext", {
             required: 'Full Post is Required  ',
             minLength: { value: 10, message: 'Post  must be at  least 10  Characters' }
 
@@ -97,7 +97,7 @@ const Form = ({ setLoadPosts }) => {
         </label>
       </div>
       <div className="col-span-6 ">
-        <button type='submit' className={`button-90  `} >Post Blog</button>
+        <button type='submit' className={` button-90 `} >Post Blog</button>
       </div>
 
 
