@@ -17,7 +17,6 @@ const MenuButton = ({ post, setLoadPosts }) => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         setLoadPosts(true)
         toast.success('Successfully Deleted !')
       })
