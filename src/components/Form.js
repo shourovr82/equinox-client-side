@@ -5,7 +5,9 @@ import './form.css'
 
 const Form = ({ setLoadPosts }) => {
   const [mainpost, setMainPost] = useState('');
-  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
 
 
   const handleChangeText = (e) => {
@@ -13,18 +15,20 @@ const Form = ({ setLoadPosts }) => {
   }
 
   const handleSubmitPost = data => {
-    console.log(data)
+    const postedDate = new Date().toDateString();
+    const allData = {
+      ...data, postedDate
+    }
     if (data) {
       fetch('http://localhost:9999/poststatus', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(allData)
       })
         .then(res => res.json())
         .then(result => {
-          console.log(result);
           setLoadPosts(true);
           reset();
           toast.success('Successfully Posted.', {
@@ -45,11 +49,10 @@ const Form = ({ setLoadPosts }) => {
 
 
 
+
   return (
     <form
       onSubmit={handleSubmit(handleSubmitPost)} className={` ${!errors ? 'gap-0' : 'gap-0 md:gap-3 '} grid grid-cols-6`}>
-
-
       <div className="col-span-6  ">
         <label className="pure-material-textfield-outlined  w-full">
           <input placeholder=' '   {...register("fullname", {
