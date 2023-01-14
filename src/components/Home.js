@@ -12,7 +12,7 @@ const Home = () => {
   const { status, data: logConnections, error, refetch: fetchlog } = useQuery({
     queryKey: ['logConnections'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:9999/getlogconnections')
+      const res = await axios.get('https://equinox-server.vercel.app/getlogconnections')
       return res.data
     },
   })

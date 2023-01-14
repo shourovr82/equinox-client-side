@@ -23,7 +23,7 @@ const AllPosts = ({ loadPosts, setLoadPosts }) => {
   const { status, data: allposts, error, refetch } = useQuery({
     queryKey: ['todos'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:9999/getallposts')
+      const res = await axios.get('https://equinox-server.vercel.app/getallposts')
       return res.data
     },
   })

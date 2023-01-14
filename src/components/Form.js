@@ -20,7 +20,7 @@ const Form = ({ setLoadPosts }) => {
       ...data, postedDate
     }
     if (data) {
-      fetch('http://localhost:9999/poststatus', {
+      fetch('https://equinox-server.vercel.app/poststatus', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

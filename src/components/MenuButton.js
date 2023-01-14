@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast';
 
 const MenuButton = ({ post, setLoadPosts }) => {
   const handleDeletePost = () => {
-    fetch(`http://localhost:9999/deletepost/${post._id}`, {
+    fetch(`https://equinox-server.vercel.app/deletepost/${post._id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
